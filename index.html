@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -1541,36 +1541,6 @@ const DB = [
   {name:"60",    D:60.000, p:5.500, std:"M",    Dp:56.428, Dm:53.252},
   {name:"64",    D:64.000, p:6.000, std:"M",    Dp:60.103, Dm:56.639},
 
-  // Metric Fine (ISO 724)
-  {name:"1 x 0.2",    D:1.000,  p:0.200, std:"MF", Dp:0.870,  Dm:0.755},
-  {name:"1.2 x 0.2",  D:1.200,  p:0.200, std:"MF", Dp:1.070,  Dm:0.955},
-  {name:"1.4 x 0.2",  D:1.400,  p:0.200, std:"MF", Dp:1.270,  Dm:1.155},
-  {name:"1.6 x 0.2",  D:1.600,  p:0.200, std:"MF", Dp:1.470,  Dm:1.355},
-  {name:"2 x 0.25",   D:2.000,  p:0.250, std:"MF", Dp:1.838,  Dm:1.693},
-  {name:"2.5 x 0.35", D:2.500,  p:0.350, std:"MF", Dp:2.273,  Dm:2.071},
-  {name:"3 x 0.35",   D:3.000,  p:0.350, std:"MF", Dp:2.773,  Dm:2.571},
-  {name:"4 x 0.5",    D:4.000,  p:0.500, std:"MF", Dp:3.675,  Dm:3.387},
-  {name:"5 x 0.5",    D:5.000,  p:0.500, std:"MF", Dp:4.675,  Dm:4.387},
-  {name:"6 x 0.75",   D:6.000,  p:0.750, std:"MF", Dp:5.513,  Dm:5.080},
-  {name:"8 x 1.0",    D:8.000,  p:1.000, std:"MF", Dp:7.350,  Dm:6.773},
-  {name:"10 x 1.0",   D:10.000, p:1.000, std:"MF", Dp:9.350,  Dm:8.773},
-  {name:"10 x 1.25",  D:10.000, p:1.250, std:"MF", Dp:9.188,  Dm:8.466},
-  {name:"12 x 1.25",  D:12.000, p:1.250, std:"MF", Dp:11.188, Dm:10.466},
-  {name:"12 x 1.5",   D:12.000, p:1.500, std:"MF", Dp:11.026, Dm:10.160},
-  {name:"14 x 1.5",   D:14.000, p:1.500, std:"MF", Dp:13.026, Dm:12.160},
-  {name:"16 x 1.5",   D:16.000, p:1.500, std:"MF", Dp:15.026, Dm:14.160},
-  {name:"18 x 1.5",   D:18.000, p:1.500, std:"MF", Dp:17.026, Dm:16.160},
-  {name:"20 x 1.5",   D:20.000, p:1.500, std:"MF", Dp:19.026, Dm:18.160},
-  {name:"22 x 1.5",   D:22.000, p:1.500, std:"MF", Dp:21.026, Dm:20.160},
-  {name:"24 x 2.0",   D:24.000, p:2.000, std:"MF", Dp:22.701, Dm:21.546},
-  {name:"27 x 2.0",   D:27.000, p:2.000, std:"MF", Dp:25.701, Dm:24.546},
-  {name:"30 x 2.0",   D:30.000, p:2.000, std:"MF", Dp:28.701, Dm:27.546},
-  {name:"33 x 2.0",   D:33.000, p:2.000, std:"MF", Dp:31.701, Dm:30.546},
-  {name:"36 x 3.0",   D:36.000, p:3.000, std:"MF", Dp:34.051, Dm:32.319},
-  {name:"39 x 3.0",   D:39.000, p:3.000, std:"MF", Dp:37.051, Dm:35.319},
-  {name:"42 x 3.0",   D:42.000, p:3.000, std:"MF", Dp:40.051, Dm:38.319},
-  {name:"45 x 3.0",   D:45.000, p:3.000, std:"MF", Dp:43.051, Dm:41.319},
-  {name:"48 x 3.0",   D:48.000, p:3.000, std:"MF", Dp:46.051, Dm:44.319},
 
   // UNC
   {name:"#1-64",    D:1.854,  p:0.397, std:"UNC", Dp:1.598,   Dm:1.425},
@@ -1844,13 +1814,95 @@ const DB = [
   {name:"Rd 48x8",  D:48.000, p:8.000, std:"Knuckle", Dp:43.670, Dm:39.340},
   {name:"Rd 60x8",  D:60.000, p:8.000, std:"Knuckle", Dp:55.670, Dm:51.340},
 ];
+/* =======================================================================
+   SECTION 2b — METRIC FINE (MF) FULL SERIES
+   Complete ISO 261 / ISO 262 fine-pitch series, every nominal diameter
+   from 1 mm to 70 mm, with EVERY standard fine pitch for each diameter.
+   Basic profile per ISO 68-1:
+     H  = 0.866025 p
+     d2 = d - 0.649519 p   (pitch diameter)
+     d3 = d - 1.226869 p   (external minor diameter)
+======================================================================= */
+const MF_SERIES = [
+  [1,    [0.2]],
+  [1.1,  [0.2]],
+  [1.2,  [0.2]],
+  [1.4,  [0.2]],
+  [1.6,  [0.2]],
+  [1.8,  [0.2]],
+  [2,    [0.25]],
+  [2.2,  [0.25]],
+  [2.5,  [0.35]],
+  [3,    [0.35]],
+  [3.5,  [0.35]],
+  [4,    [0.5]],
+  [4.5,  [0.5]],
+  [5,    [0.5]],
+  [5.5,  [0.5]],
+  [6,    [0.75, 0.5]],
+  [7,    [0.75, 0.5]],
+  [8,    [1, 0.75, 0.5]],
+  [9,    [1, 0.75, 0.5]],
+  [10,   [1.25, 1, 0.75, 0.5]],
+  [11,   [1, 0.75, 0.5]],
+  [12,   [1.5, 1.25, 1, 0.75, 0.5]],
+  [14,   [1.5, 1.25, 1, 0.75, 0.5]],
+  [15,   [1.5, 1]],
+  [16,   [1.5, 1, 0.75, 0.5]],
+  [17,   [1.5, 1]],
+  [18,   [2, 1.5, 1, 0.75, 0.5]],
+  [20,   [2, 1.5, 1, 0.75, 0.5]],
+  [22,   [2, 1.5, 1, 0.75, 0.5]],
+  [24,   [2, 1.5, 1, 0.75]],
+  [25,   [2, 1.5, 1]],
+  [26,   [1.5]],
+  [27,   [2, 1.5, 1, 0.75]],
+  [28,   [2, 1.5, 1]],
+  [30,   [3, 2, 1.5, 1, 0.75]],
+  [32,   [2, 1.5]],
+  [33,   [3, 2, 1.5, 1, 0.75]],
+  [35,   [1.5]],
+  [36,   [3, 2, 1.5, 1]],
+  [38,   [1.5]],
+  [39,   [3, 2, 1.5, 1]],
+  [40,   [3, 2, 1.5]],
+  [42,   [4, 3, 2, 1.5, 1]],
+  [45,   [4, 3, 2, 1.5, 1]],
+  [48,   [4, 3, 2, 1.5]],
+  [50,   [3, 2, 1.5]],
+  [52,   [4, 3, 2, 1.5]],
+  [55,   [4, 3, 2, 1.5]],
+  [56,   [4, 3, 2, 1.5]],
+  [58,   [4, 3, 2, 1.5]],
+  [60,   [4, 3, 2, 1.5]],
+  [62,   [4, 3, 2, 1.5]],
+  [64,   [4, 3, 2, 1.5]],
+  [65,   [4, 3, 2, 1.5]],
+  [68,   [4, 3, 2, 1.5]],
+  [70,   [6, 4, 3, 2, 1.5]],
+];
+(function buildMetricFine() {
+  const num = v => Number(v.toFixed(3)).toString();
+  for (const [d, pitches] of MF_SERIES) {
+    for (const p of pitches) {
+      DB.push({
+        name: num(d) + ' x ' + num(p),
+        D:  d,
+        p:  p,
+        std: "MF",
+        Dp: Number((d - 0.649519 * p).toFixed(3)),
+        Dm: Number((d - 1.226869 * p).toFixed(3)),
+      });
+    }
+  }
+})();
 
 /* =======================================================================
    SECTION 3 — STANDARD METADATA
 ======================================================================= */
 const STANDARDS = {
   "M":       { full:"Metric Coarse (M)",         flag:"🌍", metric:true,  desc:"ISO 724 · M1.6–M64",                            angle:60,  profile:"iso60" },
-  "MF":      { full:"Metric Fine (MF)",           flag:"🌍", metric:true,  desc:"ISO 724 · M1–M48 fine pitch",                   angle:60,  profile:"iso60" },
+  "MF":      { full:"Metric Fine (MF)",           flag:"🌍", metric:true,  desc:"ISO 261 · M1–M70, all fine pitches",            angle:60,  profile:"iso60" },
   "UNC":     { full:"Unified National Coarse",    flag:"🇺🇸", metric:false, desc:"ASME B1.1 · #1–1½\" UNC",                      angle:60,  profile:"iso60" },
   "UNF":     { full:"Unified National Fine",      flag:"🇺🇸", metric:false, desc:"ASME B1.1 · #0–1½\" UNF",                      angle:60,  profile:"iso60" },
   "UNEF":    { full:"Unified Extra Fine",         flag:"🇺🇸", metric:false, desc:"ASME B1.1 · #12–2-11/16\" UNEF (up to 68 mm)", angle:60,  profile:"iso60" },
@@ -2958,6 +3010,10 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
+
+
+
+
 
 
 
